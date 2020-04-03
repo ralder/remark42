@@ -9,12 +9,6 @@ on:
       - 'backend/**'
       - '!backend/scripts/**'
       - '.golangci.yml'
-  pull_request:
-    paths:
-      - '.github/workflows/ci-test-backend.yml'
-      - 'backend/**'
-      - '!backend/scripts/**'
-      - '.golangci.yml'
 
 jobs:
   backend:
@@ -53,7 +47,7 @@ jobs:
           go get -u github.com/mattn/goveralls
 
       - name: run backend linters
-        run: $GITHUB_WORKSPACE/golangci-lint run --config .golangci.yml ./...
+        run: $GITHUB_WORKSPACE/golangci-lint run --config .golangci.yml ./... | sed 's#^app/#backend/app/#' && exit 1
         working-directory: backend
 
       - name: run linters for examples
