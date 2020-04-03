@@ -6,12 +6,12 @@
         {
           "regexp": "^(.+):(\\d+):(\\d+):\\s(.+)$",
           "file": 1,
-          "fromPath": "backend",
           "line": 2,
           "column": 3,
           "message": 4
         }
-      ]
+      ],
+      "fromPath": "../../../../backend/"
     }
   ]
 }
