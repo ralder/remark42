@@ -53,7 +53,10 @@ jobs:
           go get -u github.com/mattn/goveralls
 
       - name: run backend linters
-        run: $GITHUB_WORKSPACE/golangci-lint run --config .golangci.yml ./...
+        run: |
+            echo "::add-matcher::.github/workflows/problem-matchers/golangci.json"
+            $GITHUB_WORKSPACE/golangci-lint run --config .golangci.yml ./...
+            echo "::remove-matcher  owner=golangci::"
         working-directory: backend
 
       - name: run linters for examples
